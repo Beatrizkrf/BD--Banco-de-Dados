@@ -1,0 +1,54 @@
+-- Geração de Modelo físico
+-- Sql ANSI 2003 - brModelo.
+
+
+
+CREATE TABLE cliente (
+codCliente Int PRIMARY KEY auto_increment,
+nome varchar(255) not null,
+telefone varchar(15) not null,
+email varchar(40) unique not null,
+cpf varchar(20) unique not null,
+rg varchar(15) unique not null,
+dataNasc datetime not null,
+rua varchar(255) null,
+num int(10) null,
+compl varchar(30) null,
+bairro varchar(255) null,
+cidade varchar(255) null,
+estado varchar(255) null,
+cep varchar(30) null)
+
+CREATE TABLE carro (
+codCarro Integer PRIMARY KEY auto_increment,
+placa varchar(10) not null,
+marca varchar(255) not null,
+modelo varchar (255),
+chassi varchar(225),
+porte varchar(255),
+cor varchar(255),
+codCliente Int,
+FOREIGN KEY(codCliente) REFERENCES cliente (codCliente)
+)
+
+CREATE TABLE tipo (
+codTipo varchar() PRIMARY KEY,
+tipo varchar(255)
+)
+
+
+CREATE TABLE ocorrencia (
+codOcorrencia Int PRIMARY KEY  auto_increment,
+data date,
+hora time,
+descricao varchar(255),
+codTipo varchar(10),
+cidade varchar(255),
+rua varchar(255),
+bairro varchar(255),
+codCarro Int,
+FOREIGN KEY(codCarro) REFERENCES carro (codCarro)
+)
+
+
+ALTER TABLE ocorrencia ADD FOREIGN KEY(codTipo) REFERENCES tipo (codTipo)
