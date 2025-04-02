@@ -1,0 +1,110 @@
+-- Geração de Modelo físico
+-- Sql ANSI 2003 - brModelo.
+
+
+
+CREATE TABLE autor (
+id_autor int PRIMARY KEY,
+nome varchar(255),
+data_nasc datetime,
+nacionalidade varchar(255),
+id_livro int,
+id_contato int
+)
+
+CREATE TABLE livro (
+id_livro int PRIMARY KEY,
+nome varchar(255),
+sinopse varchar(5000),
+genero varchar(255),
+data_publicacao date,
+estoque int,
+preco int,
+editora varchar(255)
+)
+
+CREATE TABLE item_venda (
+id_item_venda int PRIMARY KEY,
+preco_unitario int,
+quantidade int
+)
+
+CREATE TABLE venda (
+id_venda int PRIMARY KEY,
+tipo_pagamento varchar(255),
+data_venda datetime,
+valor_total int,
+quant_venda int,
+formato_compra varchar(255)
+)
+
+CREATE TABLE cliente (
+id_cliente int PRIMARY KEY,
+data_cadastro date,
+data_nasc date,
+nome varchar(255),
+rg char(20),
+cpf char(16),
+id_contato int
+)
+
+CREATE TABLE meio_contato (
+id_contato int PRIMARY KEY,
+telefone char(15),
+email varchar(255)
+)
+
+CREATE TABLE endereco (
+id_endereco int PRIMARY KEY,
+cidade varchar(255),
+numero_casa char(10),
+uf char(5),
+rua varchar(255),
+pais varchar(255),
+bairro varchar(255),
+cep char(15),
+id_cliente int,
+FOREIGN KEY(id_cliente) REFERENCES cliente (id_cliente)
+)
+
+CREATE TABLE redes_sociais (
+id_redes int PRIMARY KEY,
+instagram varchar(255),
+facebook varchar(255),
+x_twitter varchar(255),
+linkedin varchar(255),
+tiktok varchar(255)
+)
+
+CREATE TABLE possui (
+id_item_venda int,
+id_livro int,
+FOREIGN KEY(id_item_venda) REFERENCES item_venda (id_item_venda),
+FOREIGN KEY(id_livro) REFERENCES livro (id_livro)
+)
+
+-- Erro: Nome de tabela duplicado (este erro compromete a integridade referencial)!
+CREATE TABLE possui (
+id_venda int,
+id_item_venda int,
+FOREIGN KEY(id_venda) REFERENCES venda (id_venda),
+FOREIGN KEY(id_item_venda) REFERENCES item_venda (id_item_venda)
+)
+
+CREATE TABLE faz (
+id_cliente int,
+id_venda int,
+FOREIGN KEY(id_cliente) REFERENCES cliente (id_cliente),
+FOREIGN KEY(id_venda) REFERENCES venda (id_venda)
+)
+
+-- Erro: Nome de tabela duplicado (este erro compromete a integridade referencial)!
+CREATE TABLE possui (
+id_contato int,
+id_redes int,
+FOREIGN KEY(id_contato) REFERENCES meio_contato (id_contato)/*falha: chave estrangeira*/
+)
+
+ALTER TABLE autor ADD FOREIGN KEY(id_livro) REFERENCES livro (id_livro)
+ALTER TABLE autor ADD FOREIGN KEY(id_contato) REFERENCES meio_contato (id_contato)
+ALTER TABLE cliente ADD FOREIGN KEY(id_contato) REFERENCES meio_contato (id_contato)
