@@ -1,0 +1,88 @@
+- Geração de Modelo físico
+-- Sql ANSI 2003 - brModelo.
+
+
+
+CREATE TABLE curso (
+id_curso int PRIMARY KEY,
+nome varchar(255),
+descricao varchar(255),
+modalidade_de_ensino varchar(255),
+carga_horaria datetime,
+duracao int,
+data_fim datetime,
+num_vagas int,
+valor int,
+data_inicio datetime
+)
+
+CREATE TABLE turma (
+id_turma int PRIMARY KEY,
+data_fim datetime,
+quant_vagas int,
+quant_alunos int,
+data_inicio datetime,
+desempenho_geral varchar(255),
+nivel int,
+id_aluno int
+)
+
+CREATE TABLE aluno  (
+id_aluno int PRIMARY KEY,
+email varchar(255),
+nome char(20),
+data_nasc datetime,
+curso varchar(255),
+cpf char(16),
+data_matricula datetime,
+rg char(20),
+historico varchar(1000),
+notas int,
+desempenho varchar(255),
+telefone char(20),
+frequencia varchar(255)
+)
+
+CREATE TABLE disciplina (
+id_disciplina Texto(1) PRIMARY KEY,
+carga_horaria int,
+descricao varchar(255),
+prof_responsavel varchar(255),
+nome varchar(255)
+)
+
+CREATE TABLE professor (
+telefone char(20),
+nome varchar(255),
+cpf char(16),
+data_contratacao datetime,
+data_nasc datetime,
+email varcjar(255),
+carga_horaria int,
+experiencia varchar(255),
+salario int,
+id_professor int PRIMARY KEY,
+rg char(20)
+)
+
+CREATE TABLE possui (
+id_turma int,
+id_curso int,
+FOREIGN KEY(id_turma) REFERENCES turma (id_turma),
+FOREIGN KEY(id_curso) REFERENCES curso (id_curso)
+)
+
+CREATE TABLE possui (
+id_curso int,
+id_disciplina Texto(1),
+FOREIGN KEY(id_curso) REFERENCES curso (id_curso),
+FOREIGN KEY(id_disciplina) REFERENCES disciplina (id_disciplina)
+)
+
+CREATE TABLE ministra (
+id_professor int,
+id_disciplina Texto(1),
+FOREIGN KEY(id_professor) REFERENCES professor (id_professor)/*falha: chave estrangeira*/
+)
+
+ALTER TABLE turma ADD FOREIGN KEY(id_aluno) REFERENCES aluno  (id_aluno)

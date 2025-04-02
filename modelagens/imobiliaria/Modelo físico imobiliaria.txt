@@ -1,0 +1,90 @@
+-- Geração de Modelo físico
+-- Sql ANSI 2003 - brModelo.
+
+
+
+CREATE TABLE proprietario (
+cod_proprietario int PRIMARY KEY,
+nome varchar(255),
+rg char(20),
+cpf char(16),
+data_nasc datetime,
+email char(90),
+telefone char(20),
+quant_imovies datetime,
+cod_corretor int
+)
+
+CREATE TABLE corretor (
+cod_corretor int PRIMARY KEY,
+nome varchar(255),
+rg char(20),
+cpf char(20),
+data_nasc datetime,
+telefone char(20),
+email char(90),
+data_contratacao datetime,
+tipo_contrato varchar(255),
+experiencia varchar(255),
+especialidade varchar(255),
+cod_endereco int
+)
+
+CREATE TABLE inqulino (
+cod_inquilino int PRIMARY KEY,
+nome varchar(255),
+data_nasc datetime,
+cpf char(20),
+rg char(20),
+estado_civil char(50),
+email char(80),
+telefone char(20),
+comprovante_renda varchar(225),
+data_inicio_contrato datetime,
+data_fim_contrato datetime,
+aluguel int,
+renovacao varchar(225),
+cod_corretor int,
+FOREIGN KEY(cod_corretor) REFERENCES corretor (cod_corretor)
+)
+
+CREATE TABLE imovel (
+cod_imovel int PRIMARY KEY,
+preco int,
+estado_fisico varchar(255),
+quant_comodos int,
+quant_andares int,
+quant_banheiros int,
+quant_quartos int,
+localidade varchar(255),
+tipo varchar(100),
+descricao varchar(500),
+data_construcao date,
+area int,
+cod_proprietario int,
+cod_endereco int,
+FOREIGN KEY(cod_proprietario) REFERENCES proprietario (cod_proprietario)
+)
+
+CREATE TABLE endereco (
+cod_endereco int PRIMARY KEY,
+numero_casa int,
+cidade varchar(255),
+cep char(20),
+bairro varchar(255),
+uf char(2),
+complemento varchar(255),
+rua varchar(255)
+)
+
+CREATE TABLE aluga (
+cod_aluguel int PRIMARY KEY,
+cod_inquilino int,
+cod_imovel int,
+FOREIGN KEY(cod_inquilino) REFERENCES inqulino (cod_inquilino),
+FOREIGN KEY(cod_imovel) REFERENCES imovel (cod_imovel)
+)
+
+ALTER TABLE proprietario ADD FOREIGN KEY(cod_corretor) REFERENCES corretor (cod_corretor)
+ALTER TABLE corretor ADD FOREIGN KEY(cod_endereco) REFERENCES endereco (cod_endereco)
+ALTER TABLE imovel ADD FOREIGN KEY(cod_endereco) REFERENCES endereco (cod_endereco)

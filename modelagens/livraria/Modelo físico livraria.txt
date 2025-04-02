@@ -1,0 +1,80 @@
+- Geração de Modelo físico
+-- Sql ANSI 2003 - brModelo.
+
+CREATE TABLE autor (
+id_autor int PRIMARY KEY,
+nome varchar(255)
+)
+
+CREATE TABLE livro (
+id_livro int PRIMARY KEY,
+nome varchar(255),
+genero varchar(255),
+editora varchar(255),
+sinopse varchar(1000),
+preco int,
+data_publicacao date,
+estoque int
+)
+
+CREATE TABLE venda (
+id_venda int PRIMARY KEY,
+data_venda date,
+quant_venda int,
+valor_total int,
+tipo_pagamento varchar(20),
+formato_compra varchar(255),
+id_cliente int,
+-- Erro: nome do campo duplicado nesta tabela!
+id_cliente int,
+FOREIGN KEY(/*erro: ??*/) REFERENCES endereco+telefone+cliente (id_endereco,id_telefone,id_cliente)
+)
+
+CREATE TABLE item_venda (
+id_item_venda int PRIMARY KEY,
+quantidade int,
+preco_unitario int,
+id_venda int,
+id_livro int,
+-- Erro: nome do campo duplicado nesta tabela!
+id_venda int,
+FOREIGN KEY(id_venda) REFERENCES venda (id_venda)
+)
+
+CREATE TABLE endereco+telefone+cliente (
+id_endereco int,
+rua varchar(255),
+numero int,
+bairro varchar(255),
+cidade varchar(255),
+uf char(2),
+cep char(10),
+id_cliente int,
+id_telefone int,
+-- Erro: nome do campo duplicado nesta tabela!
+numero int,
+id_clinte int,
+-- Erro: nome do campo duplicado nesta tabela!
+id_cliente int,
+nome varchar(255),
+telefone char(20),
+email char(100),
+cpf char(16),
+data_nasc date,
+PRIMARY KEY(id_endereco,id_telefone,id_cliente)
+)
+
+CREATE TABLE escreveu (
+id_livro int,
+id_autor int,
+FOREIGN KEY(id_livro) REFERENCES livro (id_livro),
+FOREIGN KEY(id_autor) REFERENCES autor (id_autor)
+)
+
+CREATE TABLE possui (
+id_item_venda int,
+id_livro int,
+FOREIGN KEY(id_item_venda) REFERENCES item_venda (id_item_venda),
+FOREIGN KEY(id_livro) REFERENCES livro (id_livro)
+)
+
