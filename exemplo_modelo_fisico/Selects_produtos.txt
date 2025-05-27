@@ -1,0 +1,216 @@
+Selects: 
+
+MariaDB [etecmcm2]> select * from produtos;
++------------+---------------------------+--------+-------+-----------------+--------------+----------------+
+| id_produto | nome                      | preco  | quant | marca           | id_categoria | unidade_medida |
++------------+---------------------------+--------+-------+-----------------+--------------+----------------+
+|          1 | Sabão em pó               |  25.00 |     4 | OMO             |            1 | uni            |
+|          2 | Detergente                |   3.00 |    25 | Ypê             |            1 | uni            |
+|          3 | Mussarela                 |  10.00 |    80 | Sadia           |            2 | 300g           |
+|          4 | Oculos                    | 200.00 |     1 | Extra Otica     |            3 | uni            |
+|          5 | Carne de panela           |  25.00 |     7 | Perdigão        |            4 | 200g           |
+|          6 | Milho                     |   4.00 |    55 | Qualitá         |            5 | 100g           |
+|          7 | Celular                   | 900.00 |    67 | Samsung         |            6 | uni            |
+|          8 | Body Splash Floratta Blue |  90.00 |    59 | O boticario     |            7 | uni            |
+|          9 | Refrigerante              |   3.00 |   478 | Guaraná Jesus   |            8 | 300ml          |
+|         10 | Uva                       |  10.00 |    92 | turma da Mônica |            9 | 400g           |
+|         11 | batata frita              |  30.00 |    58 | Aurora          |           10 | 2kg            |
+|         12 | Presunto                  |   8.00 |    60 | Sadia           |            2 | 300g           |
+|         13 | Óculos escuros            | 100.00 |    10 | Extra Otica     |            3 | uni            |
+|         14 | Frango                    |  20.00 |     8 | Sadia           |            4 | 1kg            |
+|         15 | Atum                      |   3.50 |    56 | Gomes da Costa  |            5 | uni            |
+|         16 | Secador de Cabelo         | 250.00 |    34 | Philco          |            6 | uni            |
+|         17 | Hidratante Corporal       |  35.00 |    87 | Natura          |            7 | uni            |
+|         18 | Suco de Uva               |   5.00 |    89 | Vigor           |            8 | 500ml          |
+|         19 | Morango                   |  10.00 |    23 | Turma da Monica |            9 | 400g           |
+|         20 | Nuggets                   |  15.00 |    20 | Perdigão        |           10 | 300g           |
++------------+---------------------------+--------+-------+-----------------+--------------+----------------+
+20 rows in set (0.000 sec)
+
+MariaDB [etecmcm2]> select * from produtos where marca = 'Turma da Monica';
++------------+---------+-------+-------+-----------------+--------------+----------------+
+| id_produto | nome    | preco | quant | marca           | id_categoria | unidade_medida |
++------------+---------+-------+-------+-----------------+--------------+----------------+
+|         10 | Uva     | 10.00 |    92 | turma da Mônica |            9 | 400g           |
+|         19 | Morango | 10.00 |    23 | Turma da Monica |            9 | 400g           |
++------------+---------+-------+-------+-----------------+--------------+----------------+
+2 rows in set (0.001 sec)
+
+MariaDB [etecmcm2]> select * from produtos where preco >20;
++------------+---------------------------+--------+-------+-------------+--------------+----------------+
+| id_produto | nome                      | preco  | quant | marca       | id_categoria | unidade_medida |
++------------+---------------------------+--------+-------+-------------+--------------+----------------+
+|          1 | Sabão em pó               |  25.00 |     4 | OMO         |            1 | uni            |
+|          4 | Oculos                    | 200.00 |     1 | Extra Otica |            3 | uni            |
+|          5 | Carne de panela           |  25.00 |     7 | Perdigão    |            4 | 200g           |
+|          7 | Celular                   | 900.00 |    67 | Samsung     |            6 | uni            |
+|          8 | Body Splash Floratta Blue |  90.00 |    59 | O boticario |            7 | uni            |
+|         11 | batata frita              |  30.00 |    58 | Aurora      |           10 | 2kg            |
+|         13 | Óculos escuros            | 100.00 |    10 | Extra Otica |            3 | uni            |
+|         16 | Secador de Cabelo         | 250.00 |    34 | Philco      |            6 | uni            |
+|         17 | Hidratante Corporal       |  35.00 |    87 | Natura      |            7 | uni            |
++------------+---------------------------+--------+-------+-------------+--------------+----------------+
+9 rows in set (0.000 sec)
+
+MariaDB [etecmcm2]> select * from produtos where quant <=56;
++------------+-------------------+--------+-------+-----------------+--------------+----------------+
+| id_produto | nome              | preco  | quant | marca           | id_categoria | unidade_medida |
++------------+-------------------+--------+-------+-----------------+--------------+----------------+
+|          1 | Sabão em pó       |  25.00 |     4 | OMO             |            1 | uni            |
+|          2 | Detergente        |   3.00 |    25 | Ypê             |            1 | uni            |
+|          4 | Oculos            | 200.00 |     1 | Extra Otica     |            3 | uni            |
+|          5 | Carne de panela   |  25.00 |     7 | Perdigão        |            4 | 200g           |
+|          6 | Milho             |   4.00 |    55 | Qualitá         |            5 | 100g           |
+|         13 | Óculos escuros    | 100.00 |    10 | Extra Otica     |            3 | uni            |
+|         14 | Frango            |  20.00 |     8 | Sadia           |            4 | 1kg            |
+|         15 | Atum              |   3.50 |    56 | Gomes da Costa  |            5 | uni            |
+|         16 | Secador de Cabelo | 250.00 |    34 | Philco          |            6 | uni            |
+|         19 | Morango           |  10.00 |    23 | Turma da Monica |            9 | 400g           |
+|         20 | Nuggets           |  15.00 |    20 | Perdigão        |           10 | 300g           |
++------------+-------------------+--------+-------+-----------------+--------------+----------------+
+11 rows in set (0.000 sec)
+
+MariaDB [etecmcm2]> SELECT nome, preco FROM produtos ORDER BY preco ASC LIMIT 5;
++--------------+-------+
+| nome         | preco |
++--------------+-------+
+| Detergente   |  3.00 |
+| Refrigerante |  3.00 |
+| Atum         |  3.50 |
+| Milho        |  4.00 |
+| Suco de Uva  |  5.00 |
++--------------+-------+
+5 rows in set (0.000 sec)
+
+MariaDB [etecmcm2]> select nome, preco from produtos order by preco desc limit 5;
++---------------------------+--------+
+| nome                      | preco  |
++---------------------------+--------+
+| Celular                   | 900.00 |
+| Secador de Cabelo         | 250.00 |
+| Oculos                    | 200.00 |
+| Óculos escuros            | 100.00 |
+| Body Splash Floratta Blue |  90.00 |
++---------------------------+--------+
+5 rows in set (0.001 sec)
+
+MariaDB [etecmcm2]> SELECT COUNT(*) AS total_produtos FROM produtos;
++----------------+
+| total_produtos |
++----------------+
+|             20 |
++----------------+
+1 row in set (0.000 sec)
+
+MariaDB [etecmcm2]> select avg(preco) as preco_medio from produtos;
++-------------+
+| preco_medio |
++-------------+
+|   87.325000 |
++-------------+
+1 row in set (0.000 sec)
+
+MariaDB [etecmcm2]> select nome, quant from produtos order by quant desc limit 1;
++--------------+-------+
+| nome         | quant |
++--------------+-------+
+| Refrigerante |   478 |
++--------------+-------+
+1 row in set (0.000 sec)
+
+MariaDB [etecmcm2]> select p.nome, c.nome_cat from produtos p join categorias c on p.id_categoria = c.id_categoria;
++---------------------------+-------------+
+| nome                      | nome_cat    |
++---------------------------+-------------+
+| Sabão em pó               | limpeza     |
+| Detergente                | limpeza     |
+| Mussarela                 | frios       |
+| Presunto                  | frios       |
+| Oculos                    | oculos      |
+| Óculos escuros            | oculos      |
+| Carne de panela           | carnes      |
+| Frango                    | carnes      |
+| Milho                     | enlatados   |
+| Atum                      | enlatados   |
+| Celular                   | eletronicos |
+| Secador de Cabelo         | eletronicos |
+| Body Splash Floratta Blue | perfumaria  |
+| Hidratante Corporal       | perfumaria  |
+| Refrigerante              | bebidas     |
+| Suco de Uva               | bebidas     |
+| Uva                       | hortifrut   |
+| Morango                   | hortifrut   |
+| batata frita              | congelados  |
+| Nuggets                   | congelados  |
++---------------------------+-------------+
+20 rows in set (0.000 sec)
+
+MariaDB [etecmcm2]> select p.nome, p.marca, p.preco from produtos p join categorias c on p.id_categoria = c.id_categoria where c.nome_cat = 'Perfumaria';
++---------------------------+-------------+-------+
+| nome                      | marca       | preco |
++---------------------------+-------------+-------+
+| Body Splash Floratta Blue | O boticario | 90.00 |
+| Hidratante Corporal       | Natura      | 35.00 |
++---------------------------+-------------+-------+
+2 rows in set (0.001 sec)
+
+MariaDB [etecmcm2]> SELECT c.nome_cat, COUNT(*) AS total_produtos FROM produtos p JOIN categorias c ON p.id_categoria = c.id_categoria GROUP BY c.nome_cat;
++-------------+----------------+
+| nome_cat    | total_produtos |
++-------------+----------------+
+| bebidas     |              2 |
+| carnes      |              2 |
+| congelados  |              2 |
+| eletronicos |              2 |
+| enlatados   |              2 |
+| frios       |              2 |
+| hortifrut   |              2 |
+| limpeza     |              2 |
+| oculos      |              2 |
+| perfumaria  |              2 |
++-------------+----------------+
+10 rows in set (0.000 sec)
+
+MariaDB [etecmcm2]> select * from produtos
+    -> where preco between 10 and 20;
++------------+-----------+-------+-------+-----------------+--------------+----------------+
+| id_produto | nome      | preco | quant | marca           | id_categoria | unidade_medida |
++------------+-----------+-------+-------+-----------------+--------------+----------------+
+|          3 | Mussarela | 10.00 |    80 | Sadia           |            2 | 300g           |
+|         10 | Uva       | 10.00 |    92 | turma da Mônica |            9 | 400g           |
+|         14 | Frango    | 20.00 |     8 | Sadia           |            4 | 1kg            |
+|         19 | Morango   | 10.00 |    23 | Turma da Monica |            9 | 400g           |
+|         20 | Nuggets   | 15.00 |    20 | Perdigão        |           10 | 300g           |
++------------+-----------+-------+-------+-----------------+--------------+----------------+
+5 rows in set (0.001 sec)
+
+MariaDB [etecmcm2]> select *from produtos
+    -> where nome like 'p%';
++------------+----------+-------+-------+-------+--------------+----------------+
+| id_produto | nome     | preco | quant | marca | id_categoria | unidade_medida |
++------------+----------+-------+-------+-------+--------------+----------------+
+|         12 | Presunto |  8.00 |    60 | Sadia |            2 | 300g           |
++------------+----------+-------+-------+-------+--------------+----------------+
+1 row in set (0.000 sec)
+
+MariaDB [etecmcm2]> select distinct marca from produtos;
++-----------------+
+| marca           |
++-----------------+
+| OMO             |
+| Ypê             |
+| Sadia           |
+| Extra Otica     |
+| Perdigão        |
+| Qualitá         |
+| Samsung         |
+| O boticario     |
+| Guaraná Jesus   |
+| turma da Mônica |
+| Aurora          |
+| Gomes da Costa  |
+| Philco          |
+| Natura          |
+| Vigor           |
++-----------------+
+15 rows in set (0.000 sec)

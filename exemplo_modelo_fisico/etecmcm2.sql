@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 19-Maio-2025 às 14:08
--- Versão do servidor: 10.4.28-MariaDB
--- versão do PHP: 8.2.4
+-- Tempo de geração: 27-Maio-2025 às 02:27
+-- Versão do servidor: 10.4.32-MariaDB
+-- versão do PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -82,7 +82,15 @@ INSERT INTO `produtos` (`id_produto`, `nome`, `preco`, `quant`, `marca`, `id_cat
 (9, 'Refrigerante', 3.00, 478, 'Guaraná Jesus', 8, '300ml'),
 (10, 'Uva', 10.00, 92, 'turma da Mônica', 9, '400g'),
 (11, 'batata frita', 30.00, 58, 'Aurora', 10, '2kg'),
-(12, 'Presunto', 8.00, 60, 'Sadia', 2, '300g');
+(12, 'Presunto', 8.00, 60, 'Sadia', 2, '300g'),
+(13, 'Óculos escuros', 100.00, 10, 'Extra Otica', 3, 'uni'),
+(14, 'Frango', 20.00, 8, 'Sadia', 4, '1kg'),
+(15, 'Atum', 3.50, 56, 'Gomes da Costa', 5, 'uni'),
+(16, 'Secador de Cabelo', 250.00, 34, 'Philco', 6, 'uni'),
+(17, 'Hidratante Corporal', 35.00, 87, 'Natura', 7, 'uni'),
+(18, 'Suco de Uva', 5.00, 89, 'Vigor', 8, '500ml'),
+(19, 'Morango', 10.00, 23, 'Turma da Monica', 9, '400g'),
+(20, 'Nuggets', 15.00, 20, 'Perdigão', 10, '300g');
 
 --
 -- Índices para tabelas despejadas
@@ -115,7 +123,7 @@ ALTER TABLE `categorias`
 -- AUTO_INCREMENT de tabela `produtos`
 --
 ALTER TABLE `produtos`
-  MODIFY `id_produto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_produto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- Restrições para despejos de tabelas
